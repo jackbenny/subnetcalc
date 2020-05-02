@@ -6,13 +6,13 @@
 #include <stdio.h>
 #include <math.h>
 
-main()
+int main(void)
 {
     int net;
     double hosts;
     double addr;
     printf("Enter netmask in slash-notation without the slash: ");
-    scanf("%d", &net);
+    scanf("%2d", &net);
 
     if (net >= 0 && net <= 32) // Sanity check the user input
     {
