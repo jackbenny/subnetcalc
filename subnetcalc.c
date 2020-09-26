@@ -60,7 +60,7 @@ int checkInput(char input[])
 {
     int netmask;
     /* Sanity check the user input */
-    if( strspn(input, "0123456789.-\n") == strlen(input) )
+    if( strspn(input, "0123456789\n") == strlen(input) )
     {
         netmask = atoi(input);
         if (netmask >= 0 && netmask <= 32)
@@ -112,3 +112,4 @@ void printHelp(char progname[])
             "argument.\n");
     printf("Examle: %s 24\n", progname);
 }
+
