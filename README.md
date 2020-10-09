@@ -1,4 +1,4 @@
-# subnetcalc #
+# subnetcalc
 A very simple subnet calculator written in C. It's nothing fancy at all,
 just a small project of mine to get me going with C.
 
@@ -16,3 +16,19 @@ You can also give the netmask to the program as an argument. For example:
     256 total addresses
     254 usable addresses for hosts
 
+Since version 1.0 it's also possible to run the program in silent mode
+accepting input in stdin. This is excellent for batch processing. But note that
+in this mode the program only calculates the total number of addresses.
+
+## Installation
+
+    make
+    sudo make install
+
+## Uninstalling
+
+    sudo make uninstall
+
+## Getting help
+
+    man subnetcalc

@@ -1,0 +1,22 @@
+.TH SUBNETCALC 1 "OCTOBER 2020" "Version 1.0" "User Manuals"
+.SH NAME
+subnetcalc \- calculate the number of address in a subnet
+.SH SYNOPSIS
+.B subnetcalc \fR[netmask] [-s]
+.SH DESCRIPTION
+.B subnetcalc
+is a simple subnet calculator. The user provides a subnet to the program,
+either as a argument or interactivly. The program then calculates the total
+number of addresses and usable addresses in that subnet. It is also possible to
+do batch processing with \fB\-s\fR option.
+.SH OPTIONS
+.TP
+.B \-s
+Makes the program silent and accept input on stdin. In this mode, the program
+will only calculate the total number of addresses in the given netmask.
+.SH RETURN VALUES
+Upon error, 1 is returned. Otherwise, 0 is returned.
+.SH AUTHOR
+Jack-Benny Persson <jack-benny@cyberinfo.se>
+.SH "SEE ALSO"
+.BR bc (1)

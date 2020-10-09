@@ -1,6 +1,7 @@
 /* A very simple subnet calculator in C, written by
  * Jack-Benny Persson (jack-benny@cyberinfo.se).
  * Released under GNU GPLv2.
+ * Version 1.0 (2020-10-09)
 */
 #include <stdio.h>
 #include <math.h>
@@ -15,7 +16,7 @@ void printHelp(char progname[]);
 
 int main(int argc, char *argv[])
 {
-    char input[3] = { 0 };
+    char input[4] = { 0 };
     int net;
 
     if (argc == 1) /* User didn't supply an argument, go interactive */
@@ -37,7 +38,23 @@ int main(int argc, char *argv[])
     }
     else if (argc == 2) /* User supplied exactly one argument */
     {
-        if (checkInput(argv[1]))
+        if ( strcmp("-s", argv[1]) == 0) /* User wants a silent batch */
+        {
+            while(fgets(input, sizeof(input), stdin) != NULL)
+            {
+                /* Check if netmask is numeric (and do conversion) */
+                if( checkInput(input) )
+                {
+                    printf("%ld\n", calcAddr(atoi(input)));
+                }
+                else
+                {
+                    printHelp(argv[0]);
+                    return 1;
+                }
+            }
+        }
+        else if (checkInput(argv[1]))
         {
             net = atoi(argv[1]);
             printAddr(net);
@@ -105,11 +122,16 @@ void printAddr(int netmask)
 
 void printHelp(char progname[])
 {
-    printf("Usage: %s [netmask]\n", progname);
+    printf("Usage: %s [netmask] [-s]\n", progname);
     printf("If the program is started without any arguments, "
-            "it's started in interactive mode.\n");
-    printf("Optionally, a netmask can be supplied as a "
-            "argument.\n");
-    printf("Examle: %s 24\n", progname);
+            "it is started in interactive mode.\n"
+            "Optionally, a netmask can be supplied as a "
+            "argument.\n"
+            "If the program is started with the -s option, "
+            "the program will silently accept input on stdin,\n"
+            "outputting the number of total address on stdout\n");
+    printf("\nExample: %s \n"
+           "Example: %s 24\n"
+           "Example: %s -s\n", progname, progname, progname);
 }
 
